@@ -4,7 +4,7 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
-void main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
     return 0;
 }
