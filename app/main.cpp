@@ -4,7 +4,10 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
+#include <iostream>
 
 int main(int argc, const char *argv[])
 {
@@ -25,6 +28,14 @@ int main(int argc, const char *argv[])
     // Make the window's context current
     glfwMakeContextCurrent(window);
 
+    if (glewInit() != GLEW_OK)
+    {
+        std::cout << "Error!"<<std::endl;
+        return -1;
+    }
+
+    std::cout << glGetString(GL_VERSION) << std::endl;
+
     // Loop util the user closesthe window
     while (!glfwWindowShouldClose(window))
     {
@@ -36,6 +47,7 @@ int main(int argc, const char *argv[])
         glVertex2f(0.f, 0.5f);
         glVertex2f(0.5f, -0.5f);
         glEnd();
+
         // Swap front and back buffers
         glfwSwapBuffers(window);
 
