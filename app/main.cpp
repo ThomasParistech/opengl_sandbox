@@ -8,6 +8,43 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
+
+struct ShaderProgramSource
+{
+    std::string VertexSource;
+    std::string FragmentSource;
+};
+
+static ShaderProgramSource ParseShader(const std::string &filepath)
+{
+    std::ifstream stream(filepath);
+
+    enum class ShaderType // Use the type as an index in the array
+    {
+        NONE = -1,
+        VERTEX = 0,
+        FRAGMENT = 1
+    };
+
+    std::string line;
+    std::stringstream ss[2];
+    ShaderType type = ShaderType::NONE;
+    while (std::getline(stream, line))
+    {
+        if (line.find("#shader") != std::string::npos)
+        {
+            if (line.find("vertex") != std::string::npos)
+                type = ShaderType::VERTEX;
+            else if (line.find("fragment") != std::string::npos)
+                type = ShaderType::FRAGMENT;
+        }
+        else
+            ss[(int)type] << line << '\n';
+    }
+    return {ss[0].str(), ss[1].str()};
+}
 
 static unsigned int CompileShader(unsigned int type, const std::string &source)
 {
@@ -94,24 +131,13 @@ int main(int argc, const char *argv[])
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
     glEnableVertexAttribArray(0);
 
-    std::string vertex_shader = "#version 330 core\n"
-                                "\n"
-                                "layout(location=0) in vec4 position;\n"
-                                "\n"
-                                "void main()\n"
-                                "{\n"
-                                "   gl_Position = position;\n"
-                                "}\n";
-    std::string fragment_shader = "#version 330 core\n"
-                                  "\n"
-                                  "layout(location=0) out vec4 color;\n"
-                                  "\n"
-                                  "void main()\n"
-                                  "{\n"
-                                  "   color = vec4(1.0, 0.0, 0.0, 1.0);\n"
-                                  "}\n";
+    ShaderProgramSource source = ParseShader("/home/trouch/Dev/opengl_sandbox/res/shaders/basic.shader");
+    std::cout << "Vertex" << std::endl;
+    std::cout << source.VertexSource << std::endl;
+    std::cout << "Fragment" << std::endl;
+    std::cout << source.FragmentSource << std::endl;
 
-    unsigned int shader = CreateShader(vertex_shader, fragment_shader);
+    unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);
 
     // Loop util the user closes the window
