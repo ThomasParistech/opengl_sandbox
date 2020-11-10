@@ -157,10 +157,14 @@ int main(int argc, const char *argv[])
     };
     // clang-format on
 
+    unsigned int vao;
+    GlCall(glGenVertexArrays(1, &vao));
+    GlCall(glBindVertexArray(vao));
+
     unsigned int buffer;
     GlCall(glGenBuffers(1, &buffer));
     GlCall(glBindBuffer(GL_ARRAY_BUFFER, buffer));
-    GlCall(glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), positions, GL_STATIC_DRAW));
+    GlCall(glBufferData(GL_ARRAY_BUFFER, 4 * 2 * sizeof(float), positions, GL_STATIC_DRAW));
 
     GlCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0));
     GlCall(glEnableVertexAttribArray(0));
