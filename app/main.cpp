@@ -6,6 +6,7 @@
 
 #include "renderer.h"
 #include "index_buffer.h"
+#include "vertex_array.h"
 #include "vertex_buffer.h"
 
 #include <GLFW/glfw3.h>
@@ -133,14 +134,12 @@ int main(int argc, const char *argv[])
         };
         // clang-format on
 
-        unsigned int vao;
-        GlCall(glGenVertexArrays(1, &vao));
-        GlCall(glBindVertexArray(vao));
-
+        VertexArray va;
         VertexBuffer vb(positions, 4 * 2 * sizeof(float));
 
-        GlCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0));
-        GlCall(glEnableVertexAttribArray(0));
+        VertexBufferLayout layout;
+        layout.push<float>(2);
+        va.add_buffer(vb, layout);
 
         IndexBuffer ib(indices, 6);
 
@@ -166,7 +165,7 @@ int main(int argc, const char *argv[])
             GlCall(glUseProgram(shader));
             GlCall(glUniform4f(location, r, 0.3f, 0.8f, 1.0f));
 
-            GlCall(glBindVertexArray(vao));
+            va.bind();
             ib.bind();
             GlCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
