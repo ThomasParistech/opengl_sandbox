@@ -1,12 +1,24 @@
 /*********************************************************************************************************************
- * File : a.h                                                                                                        *
+ * File : renderer.h                                                                                                 *
  *                                                                                                                   *
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
-#ifndef A_H
-#define A_H
+#ifndef RENDERER_H
+#define RENDERER_H
 
+#include <GL/glew.h>
+#include <assert.h>
+#include <iostream>
+#include <sstream>
 
+#define GlCall(x)   \
+    GlClearError(); \
+    x;              \
+    assert(GlLogCall())
 
-#endif // A_H
+void GlClearError();
+
+bool GlLogCall();
+
+#endif // RENDERER_H

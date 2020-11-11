@@ -4,37 +4,11 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
-#include <GL/glew.h>
+#include "renderer.h"
+
 #include <GLFW/glfw3.h>
 
-#include <assert.h>
-#include <iostream>
 #include <fstream>
-#include <sstream>
-
-#define GlCall(x)   \
-    GlClearError(); \
-    x;              \
-    assert(GlLogCall())
-
-static void GlClearError()
-{
-    while (glGetError())
-    {
-    };
-}
-
-static bool GlLogCall()
-{
-    while (GLenum e = glGetError())
-    {
-        std::stringstream ss;
-        ss << std::hex << e; // Error in hexadecimal
-        std::cout << "[OpenGL error] " << ss.str() << std::endl;
-        return false;
-    }
-    return true;
-}
 
 struct ShaderProgramSource
 {
