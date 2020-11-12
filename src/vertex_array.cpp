@@ -39,7 +39,10 @@ void VertexArray::add_buffer(const VertexBuffer &vb, const VertexBufferLayout &l
         const auto &element = elements[i];
         GlCall(glEnableVertexAttribArray(i));
         GlCall(glVertexAttribPointer(i, element.count, element.type,
-                                     element.normalized, layout.get_stride(), (const void *)&offset));
+                                     element.normalized, layout.get_stride(),
+                                     reinterpret_cast<const void *>((const intptr_t)offset)));
+        // Warning: OpenGL is expected to pass integer offset into argument defined as pointer
+        // It's very C-style and not very safe
         offset += element.count * VertexBufferElement::get_size_of_type(element.type);
     }
 }
