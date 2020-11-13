@@ -4,7 +4,7 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
-#include "renderer.h"
+#include "gl_error_manager.h"
 #include "vertex_buffer.h"
 
 VertexBuffer::VertexBuffer(const void *data, unsigned int bytes_size)

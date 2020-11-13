@@ -4,7 +4,7 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
-#include "renderer.h"
+#include "gl_error_manager.h"
 #include "index_buffer.h"
 #include "shader.h"
 #include "vertex_array.h"

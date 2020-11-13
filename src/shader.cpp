@@ -6,7 +6,7 @@
 
 #include <fstream>
 
-#include "renderer.h"
+#include "gl_error_manager.h"
 #include "shader.h"
 
 Shader::Shader(const std::string &filepath)

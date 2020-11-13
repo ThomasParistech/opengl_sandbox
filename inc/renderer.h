@@ -7,18 +7,6 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include <GL/glew.h>
-#include <assert.h>
-#include <iostream>
-#include <sstream>
-
-#define GlCall(x)   \
-    GlClearError(); \
-    x;              \
-    assert(GlLogCall())
-
-void GlClearError();
-
-bool GlLogCall();
+#include "gl_error_manager.h"
 
 #endif // RENDERER_H
