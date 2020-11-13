@@ -9,6 +9,7 @@
 #include "shader.h"
 #include "vertex_array.h"
 #include "vertex_buffer.h"
+#include "renderer.h"
 
 #include <GLFW/glfw3.h>
 
@@ -73,20 +74,20 @@ int main(int argc, const char *argv[])
         ib.unbind();
         shader.unbind();
 
+        Renderer renderer;
+
         float r = 0.0f;
         float increment = 0.05f;
         // Loop util the user closes the window
         while (!glfwWindowShouldClose(window))
         {
             // Render here
-            GlCall(glClear(GL_COLOR_BUFFER_BIT));
+            renderer.clear();
 
             shader.bind();
             shader.set_uniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
 
-            va.bind();
-            ib.bind();
-            GlCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+            renderer.draw(va, ib, shader);
 
             if (r > 1.0f)
                 increment = -0.05f;
@@ -95,10 +96,10 @@ int main(int argc, const char *argv[])
             r += increment;
 
             // Swap front and back buffers
-            GlCall(glfwSwapBuffers(window));
+            glfwSwapBuffers(window);
 
             // Poll for and process events
-            GlCall(glfwPollEvents());
+            glfwPollEvents();
         }
     }
     glfwTerminate();
