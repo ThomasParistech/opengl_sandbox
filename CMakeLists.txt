@@ -15,6 +15,6 @@ find_package(GLEW REQUIRED)
 # GLFW
 find_package(glfw3 3.3 REQUIRED)
 
-include_directories(inc)
+include_directories(inc inc/vendor)
 add_subdirectory(src)
 add_subdirectory(app)
