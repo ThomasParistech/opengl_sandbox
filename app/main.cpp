@@ -9,6 +9,8 @@
 #include "shader.h"
 #include "vertex_array.h"
 #include "vertex_buffer.h"
+#include "texture.h"
+
 #include "renderer.h"
 
 #include <GLFW/glfw3.h>
@@ -44,10 +46,10 @@ int main(int argc, const char *argv[])
     {
         // clang-format off
         float positions[] = {
-            -0.5f, -0.5f, // 0
-            0.5f, -0.5f, // 1
-            0.5f,  0.5f, // 2
-            -0.5f,  0.5f  // 3
+            -0.5f, -0.5f, 0.0f, 0.0f, // 0
+             0.5f, -0.5f, 1.0f, 0.0f, // 1
+             0.5f,  0.5f, 1.0f, 1.0f, // 2
+            -0.5f,  0.5f, 0.0f, 1.0f  // 3
         };
 
         unsigned int indices[] = {
@@ -56,10 +58,14 @@ int main(int argc, const char *argv[])
         };
         // clang-format on
 
+        GlCall(glEnable(GL_BLEND));
+        GlCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+
         VertexArray va;
-        VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+        VertexBuffer vb(positions, 4 * 4 * sizeof(float));
 
         VertexBufferLayout layout;
+        layout.push<float>(2);
         layout.push<float>(2);
         va.add_buffer(vb, layout);
 
@@ -68,6 +74,10 @@ int main(int argc, const char *argv[])
         Shader shader("/home/trouch/Dev/opengl_sandbox/res/shaders/basic.shader");
         shader.bind();
         shader.set_uniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+
+        Texture texture("/home/trouch/Dev/opengl_sandbox/res/textures/mines_paristech_transparent.png");
+        texture.bind();
+        shader.set_uniform1i("u_Texture", 0);
 
         va.unbind();
         vb.unbind();
