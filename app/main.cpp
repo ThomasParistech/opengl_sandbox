@@ -13,6 +13,9 @@
 
 #include "renderer.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #include <GLFW/glfw3.h>
 
 int main(int argc, const char *argv[])
@@ -71,11 +74,14 @@ int main(int argc, const char *argv[])
 
         IndexBuffer ib(indices, 6);
 
+        glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
         Shader shader("/home/trouch/Dev/opengl_sandbox/res/shaders/basic.shader");
         shader.bind();
         shader.set_uniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+        shader.set_uniformMat4f("u_MVP", proj);
 
-        Texture texture("/home/trouch/Dev/opengl_sandbox/res/textures/mines_paristech_transparent.png");
+        Texture texture("/home/trouch/Dev/opengl_sandbox/res/textures/mines_paristech.png");
         texture.bind();
         shader.set_uniform1i("u_Texture", 0);
 
