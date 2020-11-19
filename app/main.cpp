@@ -83,8 +83,6 @@ int main(int argc, const char *argv[])
 
         Shader shader("/home/trouch/Dev/opengl_sandbox/res/shaders/basic.shader");
         shader.bind();
-        shader.set_uniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
-
         Texture texture("/home/trouch/Dev/opengl_sandbox/res/textures/mines_paristech.png");
         texture.bind();
         shader.set_uniform1i("u_Texture", 0);
@@ -102,8 +100,6 @@ int main(int argc, const char *argv[])
         ImGui::StyleColorsDark();
 
         glm::vec3 translation(200, 200, 0);
-        float r = 0.0f;
-        float increment = 0.05f;
         // Loop util the user closes the window
         while (!glfwWindowShouldClose(window))
         {
@@ -118,16 +114,10 @@ int main(int argc, const char *argv[])
             glm::mat4 mvp = proj * view * model;
 
             shader.bind();
-            shader.set_uniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
             shader.set_uniformMat4f("u_MVP", mvp);
 
             renderer.draw(va, ib, shader);
 
-            if (r > 1.0f)
-                increment = -0.05f;
-            else if (r < 0.0f)
-                increment = +0.05f;
-            r += increment;
 
             // Show a simple window that we create ourselves. We use a Begin/End pair to created a named window
             {
