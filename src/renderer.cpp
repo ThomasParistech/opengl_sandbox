@@ -19,8 +19,6 @@ Renderer::~Renderer()
 
 void Renderer::draw(const VertexArray &va, const IndexBuffer &ib, const Shader &shader) const
 {
-    GlCall(glClear(GL_COLOR_BUFFER_BIT));
-
     shader.bind();
     va.bind();
     ib.bind();
