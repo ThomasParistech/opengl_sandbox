@@ -63,25 +63,45 @@ int main(int argc, const char *argv[])
         ImGui_ImplOpenGL3_Init((char *)glGetString(GL_NUM_SHADING_LANGUAGE_VERSIONS));
         ImGui::StyleColorsDark();
 
+        test::Test *current_test = nullptr;
+        test::TestMenu *test_menu = new test::TestMenu(current_test);
+        current_test = test_menu;
+
+        test_menu->register_test<test::TestClearColor>("Clear Color");
+
         test::TestClearColor test;
         while (!glfwWindowShouldClose(window))
         {
+            GlCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
             renderer.clear();
-
-            test.on_update(0.0f);
-            test.on_render();
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
 
-            test.on_imgui_render();
+            if (current_test)
+            {
+                current_test->on_update(0.0f);
+                current_test->on_render();
+                ImGui::Begin("Test");
+                if (current_test != test_menu && ImGui::Button("<-"))
+                {
+                    delete current_test;
+                    current_test = test_menu;
+                }
+                current_test->on_imgui_render();
+                ImGui::End();
+            }
+
             ImGui::Render();
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
             glfwSwapBuffers(window);
             glfwPollEvents();
         }
+        if (current_test != test_menu)
+            delete test_menu;
+        delete current_test;
     }
 
     ImGui_ImplOpenGL3_Shutdown();
