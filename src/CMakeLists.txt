@@ -8,6 +8,7 @@ set(COMMON_SOURCES ${COMMON_SOURCES}
     ${CMAKE_CURRENT_SOURCE_DIR}/vertex_buffer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/vertex_buffer_layout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test/test_batch_rendering.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test_clear_color.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test_color_uniform.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test_texture_2d.cpp
