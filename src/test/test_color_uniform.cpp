@@ -10,6 +10,8 @@
 #include "renderer.h"
 #include "imgui/imgui.h"
 
+#include "glm/glm.hpp"
+
 namespace test
 {
 
@@ -42,7 +44,7 @@ namespace test
 
         shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_color_uniform.shader");
         shader_->bind();
-        shader_->set_uniform4f("u_Color", 0.0f, 0.3f, 0.8f, 1.0f);
+        shader_->set_uniform4f("u_Color", glm::vec4(0.0f, 0.3f, 0.8f, 1.0f));
     }
 
     TestColorUniform::~TestColorUniform()
@@ -65,7 +67,7 @@ namespace test
 
         Renderer renderer;
         shader_->bind();
-        shader_->set_uniform4f("u_Color", red_, 0.3f, 0.8f, 1.0f);
+        shader_->set_uniform4f("u_Color", glm::vec4(red_, 0.3f, 0.8f, 1.0f));
         renderer.draw(*vao_, *ibo_, *shader_);
     }
 
