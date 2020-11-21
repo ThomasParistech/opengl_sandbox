@@ -16,6 +16,7 @@
 
 #include "test/test_clear_color.h"
 #include "test/test_texture_2d.h"
+#include "test/test_color_uniform.h"
 
 int main(int argc, const char *argv[])
 {
@@ -62,6 +63,7 @@ int main(int argc, const char *argv[])
 
         test_menu->register_test<test::TestClearColor>("Clear Color");
         test_menu->register_test<test::TestTexture2d>("2D Texture");
+        test_menu->register_test<test::TestColorUniform>("Color uniform");
 
         test::TestClearColor test;
         while (!glfwWindowShouldClose(window))

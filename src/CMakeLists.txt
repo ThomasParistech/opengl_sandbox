@@ -9,6 +9,7 @@ set(COMMON_SOURCES ${COMMON_SOURCES}
     ${CMAKE_CURRENT_SOURCE_DIR}/vertex_buffer_layout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test_clear_color.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test/test_color_uniform.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test_texture_2d.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/stb_image/stb_image.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui/imgui_demo.cpp
