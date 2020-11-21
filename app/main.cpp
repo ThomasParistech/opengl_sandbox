@@ -5,24 +5,17 @@
  *********************************************************************************************************************/
 
 #include "gl_error_manager.h"
-#include "index_buffer.h"
-#include "shader.h"
-#include "vertex_array.h"
-#include "vertex_buffer.h"
-#include "texture.h"
-
-#include "renderer.h"
-
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
 
 #include <GLFW/glfw3.h>
+
+#include "renderer.h"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 
 #include "test/test_clear_color.h"
+#include "test/test_texture_2d.h"
 
 int main(int argc, const char *argv[])
 {
@@ -68,6 +61,7 @@ int main(int argc, const char *argv[])
         current_test = test_menu;
 
         test_menu->register_test<test::TestClearColor>("Clear Color");
+        test_menu->register_test<test::TestTexture2d>("2D Texture");
 
         test::TestClearColor test;
         while (!glfwWindowShouldClose(window))
