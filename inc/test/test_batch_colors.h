@@ -1,11 +1,11 @@
 /*********************************************************************************************************************
- * File : test_batch_rendering.h                                                                                     *
+ * File : test_batch_colors.h                                                                                        *
  *                                                                                                                   *
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
-#ifndef TEST_BATCH_RENDERING_H
-#define TEST_BATCH_RENDERING_H
+#ifndef TEST_BATCH_COLORS_H
+#define TEST_BATCH_COLORS_H
 
 #include "test/test.h"
 
@@ -17,11 +17,11 @@
 
 namespace test
 {
-    class TestBatchRendering : public Test
+    class TestBatchColors : public Test
     {
     public:
-        TestBatchRendering();
-        ~TestBatchRendering();
+        TestBatchColors();
+        ~TestBatchColors();
 
         void on_update(float delta_time) override;
         void on_render() override;
@@ -36,4 +36,4 @@ namespace test
 
 } // namespace test
 
-#endif // TEST_BATCH_RENDERING_H
+#endif // TEST_BATCH_COLORS_H

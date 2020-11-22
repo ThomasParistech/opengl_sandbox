@@ -1,11 +1,11 @@
 /*********************************************************************************************************************
- * File : test_batch_rendering.cpp                                                                                   *
+ * File : test_batch_colors.cpp                                                                                      *
  *                                                                                                                   *
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
 #include "gl_error_manager.h"
-#include "test/test_batch_rendering.h"
+#include "test/test_batch_colors.h"
 
 #include "renderer.h"
 #include "imgui/imgui.h"
@@ -15,7 +15,7 @@
 namespace test
 {
 
-    TestBatchRendering::TestBatchRendering()
+    TestBatchColors::TestBatchColors()
     {
         // clang-format off
         float positions[] = {
@@ -50,18 +50,18 @@ namespace test
         vao_->add_buffer(*vbo_, layout);
         ibo_ = std::make_unique<IndexBuffer>(indices, 12);
 
-        shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_batch_rendering.shader");
+        shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_batch_colors.shader");
     }
 
-    TestBatchRendering::~TestBatchRendering()
+    TestBatchColors::~TestBatchColors()
     {
     }
 
-    void TestBatchRendering::on_update(float delta_time)
+    void TestBatchColors::on_update(float delta_time)
     {
     }
 
-    void TestBatchRendering::on_render()
+    void TestBatchColors::on_render()
     {
         GlCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
         GlCall(glClear(GL_COLOR_BUFFER_BIT));
@@ -70,7 +70,7 @@ namespace test
         renderer.draw(*vao_, *ibo_, *shader_);
     }
 
-    void TestBatchRendering::on_imgui_render()
+    void TestBatchColors::on_imgui_render()
     {
         ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
     }
