@@ -19,15 +19,15 @@ namespace test
     {
         // clang-format off
         float positions[] = {
-            -0.8f, -0.8f, // 0
-             0.2f, -0.8f, // 1
-             0.2f,  0.2f, // 2
-            -0.8f,  0.2f, // 3
+            -0.8f, -0.8f, 1.f, 0.f, 0.f, 1.0f, // 0
+             0.2f, -0.8f, 0.f, 1.f, 0.f, 1.0f, // 1
+             0.2f,  0.2f, 0.f, 0.f, 1.f, 1.0f, // 2
+            -0.8f,  0.2f, 0.f, 0.f, 0.f, 1.0f, // 3
 
-             0.3f,  0.3f, // 4
-             0.7f,  0.3f, // 5
-             0.7f,  0.7f, // 6
-             0.3f,  0.7f  // 7
+             0.3f,  0.3f, 0.f, 1.f, 1.f, 1.0f, // 4
+             0.7f,  0.3f, 1.f, 1.f, 0.f, 1.0f, // 5
+             0.7f,  0.7f, 1.f, 0.f, 1.f, 1.0f, // 6
+             0.3f,  0.7f, 1.f, 1.f, 1.f, 1.0f  // 7
         };
 
         unsigned int indices[] = {
@@ -43,15 +43,14 @@ namespace test
 
         vao_ = std::make_unique<VertexArray>();
 
-        vbo_ = std::make_unique<VertexBuffer>(positions, 8 * 2 * sizeof(float));
+        vbo_ = std::make_unique<VertexBuffer>(positions, 8 * 6 * sizeof(float));
         VertexBufferLayout layout;
         layout.push<float>(2);
+        layout.push<float>(4);
         vao_->add_buffer(*vbo_, layout);
         ibo_ = std::make_unique<IndexBuffer>(indices, 12);
 
         shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_batch_rendering.shader");
-        shader_->bind();
-        shader_->set_uniform4f("u_Color", glm::vec4(0.0f, 0.3f, 0.8f, 1.0f));
     }
 
     TestBatchRendering::~TestBatchRendering()
