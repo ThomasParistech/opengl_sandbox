@@ -132,6 +132,11 @@ void Shader::set_uniformMat4f(const std::string &name, const glm::mat4 &matrix)
     GlCall(glUniformMatrix4fv(get_uniform_location(name), 1, GL_FALSE, &matrix[0][0]));
 }
 
+void Shader::set_uniform1iv(const std::string &name, unsigned int count, int *data)
+{
+    GlCall(glUniform1iv(get_uniform_location(name), count, data));
+}
+
 int Shader::get_uniform_location(const std::string &name)
 {
     auto it = uniform_location_cache_.find(name);

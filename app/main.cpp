@@ -15,6 +15,7 @@
 #include "imgui/imgui_impl_opengl3.h"
 
 #include "test/test_batch_colors.h"
+#include "test/test_batch_textures.h"
 #include "test/test_clear_color.h"
 #include "test/test_texture_2d.h"
 #include "test/test_color_uniform.h"
@@ -66,6 +67,7 @@ int main(int argc, const char *argv[])
         test_menu->register_test<test::TestTexture2d>("2D Texture");
         test_menu->register_test<test::TestColorUniform>("Color uniform");
         test_menu->register_test<test::TestBatchColors>("Batch Rendering Colors");
+        test_menu->register_test<test::TestBatchTextures>("Batch Rendering Textures");
 
         test::TestClearColor test;
         while (!glfwWindowShouldClose(window))

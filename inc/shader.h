@@ -29,6 +29,8 @@ public:
     void set_uniform4f(const std::string &name, const glm::vec4 &value);
     void set_uniformMat4f(const std::string &name, const glm::mat4 &matrix);
 
+    void set_uniform1iv(const std::string &name, unsigned int count, int *data);
+
 private:
     struct ProgramSource
     {
