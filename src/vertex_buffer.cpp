@@ -7,11 +7,11 @@
 #include "gl_error_manager.h"
 #include "vertex_buffer.h"
 
-VertexBuffer::VertexBuffer(const void *data, unsigned int bytes_size)
+VertexBuffer::VertexBuffer(unsigned int bytes_size, const void *data)
 {
     GlCall(glGenBuffers(1, &rendered_id_));
     bind();
-    GlCall(glBufferData(GL_ARRAY_BUFFER, bytes_size, data, GL_STATIC_DRAW));
+    GlCall(glBufferData(GL_ARRAY_BUFFER, bytes_size, data, (data ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW)));
 }
 
 VertexBuffer::~VertexBuffer()
@@ -27,4 +27,10 @@ void VertexBuffer::bind() const
 void VertexBuffer::unbind() const
 {
     GlCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
+}
+
+void VertexBuffer::update_buffer(unsigned int bytes_size, const void *data)
+{
+    bind();
+    GlCall(glBufferSubData(GL_ARRAY_BUFFER, 0, bytes_size, data));
 }

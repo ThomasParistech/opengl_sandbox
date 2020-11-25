@@ -16,6 +16,7 @@
 
 #include "test/test_batch_colors.h"
 #include "test/test_batch_textures.h"
+#include "test/test_dynamic_buffer.h"
 #include "test/test_clear_color.h"
 #include "test/test_texture_2d.h"
 #include "test/test_color_uniform.h"
@@ -29,7 +30,7 @@ int main(int argc, const char *argv[])
         return 1;
 
     // Create named window and its opengl context
-    window = glfwCreateWindow(960, 540, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(960, 540, "OpenGL Sandbox", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -68,6 +69,7 @@ int main(int argc, const char *argv[])
         test_menu->register_test<test::TestColorUniform>("Color uniform");
         test_menu->register_test<test::TestBatchColors>("Batch Rendering Colors");
         test_menu->register_test<test::TestBatchTextures>("Batch Rendering Textures");
+        test_menu->register_test<test::TestDynamicBuffer>("Dynamic Vertex Buffer");
 
         test::TestClearColor test;
         while (!glfwWindowShouldClose(window))

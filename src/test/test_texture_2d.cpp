@@ -35,7 +35,7 @@ namespace test
 
         vao_ = std::make_unique<VertexArray>();
 
-        vbo_ = std::make_unique<VertexBuffer>(positions, 4 * 4 * sizeof(float));
+        vbo_ = std::make_unique<VertexBuffer>(4 * 4 * sizeof(float), positions);
         VertexBufferLayout layout;
         layout.push<float>(2);
         layout.push<float>(2);
