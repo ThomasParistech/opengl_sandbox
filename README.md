@@ -30,3 +30,4 @@ Go to the build directory and run the app
 ```
 bin/main
 ```
+![](./images/demo.gif)
