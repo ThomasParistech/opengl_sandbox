@@ -4,6 +4,8 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
+#include "constants.h"
+
 #include "gl_error_manager.h"
 #include "test/test_color_uniform.h"
 
@@ -42,7 +44,7 @@ namespace test
         vao_->add_buffer(*vbo_, layout);
         ibo_ = std::make_unique<IndexBuffer>(indices, 6);
 
-        shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_color_uniform.shader");
+        shader_ = std::make_unique<Shader>(shader_color_uniform_path);
         shader_->bind();
         shader_->set_uniform4f("u_Color", glm::vec4(0.0f, 0.3f, 0.8f, 1.0f));
     }

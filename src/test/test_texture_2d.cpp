@@ -4,6 +4,8 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
+#include "constants.h"
+
 #include "gl_error_manager.h"
 #include "test/test_texture_2d.h"
 
@@ -45,9 +47,9 @@ namespace test
         proj_ = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
         view_ = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
-        shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_texture_2d.shader");
+        shader_ = std::make_unique<Shader>(shader_texture_path);
         shader_->bind();
-        texture_ = std::make_unique<Texture>("/home/trouch/Dev/opengl_sandbox/res/textures/mines_paristech.png");
+        texture_ = std::make_unique<Texture>(image_mines_path);
         texture_->bind();
         shader_->set_uniform1i("u_Texture", 0);
     }

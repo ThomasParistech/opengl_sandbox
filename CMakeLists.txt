@@ -15,6 +15,8 @@ find_package(GLEW REQUIRED)
 # GLFW
 find_package(glfw3 3.3 REQUIRED)
 
+set(RES_PATH ${CMAKE_CURRENT_SOURCE_DIR}/res)
+
 include_directories(inc src/vendor)
 add_subdirectory(src)
 add_subdirectory(app)

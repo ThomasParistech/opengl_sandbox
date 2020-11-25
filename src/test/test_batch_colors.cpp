@@ -4,6 +4,8 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
+#include "constants.h"
+
 #include "gl_error_manager.h"
 #include "test/test_batch_colors.h"
 
@@ -50,7 +52,7 @@ namespace test
         vao_->add_buffer(*vbo_, layout);
         ibo_ = std::make_unique<IndexBuffer>(indices, 12);
 
-        shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_batch_colors.shader");
+        shader_ = std::make_unique<Shader>(shader_colors_path);
     }
 
     TestBatchColors::~TestBatchColors()

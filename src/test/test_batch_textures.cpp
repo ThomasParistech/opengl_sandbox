@@ -4,6 +4,8 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
+#include "constants.h"
+
 #include "gl_error_manager.h"
 #include "test/test_batch_textures.h"
 
@@ -51,14 +53,14 @@ namespace test
         vao_->add_buffer(*vbo_, layout);
         ibo_ = std::make_unique<IndexBuffer>(indices, 12);
 
-        shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_batch_textures.shader");
+        shader_ = std::make_unique<Shader>(shader_textures_path);
         shader_->bind();
         int samplers[2] = {1, 2};
         shader_->set_uniform1iv("u_Textures", 2, samplers);
 
-        texture_a_ = std::make_unique<Texture>("/home/trouch/Dev/opengl_sandbox/res/textures/mines_paristech.png");
+        texture_a_ = std::make_unique<Texture>(image_mines_path);
         texture_a_->bind(1);
-        texture_b_ = std::make_unique<Texture>("/home/trouch/Dev/opengl_sandbox/res/textures/cpp.png");
+        texture_b_ = std::make_unique<Texture>(image_cpp_path);
         texture_b_->bind(2);
     }
 

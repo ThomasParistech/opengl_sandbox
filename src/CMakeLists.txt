@@ -1,4 +1,10 @@
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/constants.cpp.cmake.in
+               ${CMAKE_CURRENT_SOURCE_DIR}/constants.cpp
+               @ONLY
+               )
+
 set(COMMON_SOURCES ${COMMON_SOURCES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/constants.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gl_error_manager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/index_buffer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/renderer.cpp

@@ -4,6 +4,8 @@
  * 2020 Thomas Rouch                                                                                                 *
  *********************************************************************************************************************/
 
+#include "constants.h"
+
 #include "gl_error_manager.h"
 #include "test/test_dynamic_buffer.h"
 
@@ -48,7 +50,7 @@ namespace test
         vao_->add_buffer(*vbo_, layout);
         ibo_ = std::make_unique<IndexBuffer>(indices, 6);
 
-        shader_ = std::make_unique<Shader>("/home/trouch/Dev/opengl_sandbox/res/shaders/test_dynamic_buffer.shader");
+        shader_ = std::make_unique<Shader>(shader_dynamic_buffer_path);
     }
 
     TestDynamicBuffer::~TestDynamicBuffer()
